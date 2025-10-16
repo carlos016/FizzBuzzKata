@@ -6,8 +6,10 @@ from src.fizzbuzz import FizzBuzz
 class TestFizzBuzz:
     # Definimos el méodo setup que instanciará el objeto FizzBuzz
     def setup_method(self):
-        self.fizzbuzz = FizzBuzz(100)
+        self.max = 100
+        self.fizzbuzz = FizzBuzz(self.max)
 
     # Definimos el método de test que probará la instanciación de la clase FizzBuzz    
     def test_fizzbuzz_instantiation(self):
-        assert self.fizzbuzz.limit == 100
+        assert isinstance(self.fizzbuzz, FizzBuzz)
+        assert self.fizzbuzz.limit == self.max
