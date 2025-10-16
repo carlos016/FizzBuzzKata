@@ -25,3 +25,8 @@ Fizz
 FizzBuzz
 ...
 ```
+
+## Author
+- Name: Carlos García González
+- Email: alu0100898026@ull.edu.es
+- GitHub: [carlos016](https://github.com/carlos016)
