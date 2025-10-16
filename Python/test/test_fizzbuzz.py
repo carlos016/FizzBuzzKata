@@ -52,3 +52,6 @@ class TestFizzBuzz:
         assert self.fizzbuzz.play_to_array(50) == [self.fizzbuzz.compute(i) for i in range(1, 51)]
 
     # Definimos el método de test que probará la funcionalidad play_to_text
+    def test_fizzbuzz_play_to_text(self):
+        assert self.fizzbuzz.play_to_text() == "\n".join(self.fizzbuzz.play_to_array())
+        assert self.fizzbuzz.play_to_text(50) == "\n".join(self.fizzbuzz.play_to_array(50))
