@@ -38,9 +38,12 @@ class FizzBuzz:
             # Si no se ha añadido nada, devolvemos el número como cadena
             return result if result else str(number)
         
-    # Método para jugar al FizzBuzz hasta el límite especificado
+    # Método para jugar al FizzBuzz hasta el límite especificado y devolver el resultado como un array
     def play_to_array(self, max=None):
         if max is None:
             max = self.limit
-        
         return [self.compute(i) for i in range(1, max + 1)]
+    
+    # Método para jugar al FizzBuzz y devolver el resultado como texto
+    def play_to_text(self, max=None):
+        return "\n".join(self.play_to_array(max))
