@@ -36,11 +36,12 @@ class TestFizzBuzz:
         assert self.fizzbuzz.compute(30) == "FizzFizzBuzz"
         assert self.fizzbuzz.compute(35) == "FizzBuzzBuzz"
         assert self.fizzbuzz.compute(53) == "FizzBuzz"
-        #with pytest.raises(ValueError):
-        #    self.fizzbuzz.compute(0)
-        #with pytest.raises(ValueError):
-        #    self.fizzbuzz.compute(-5)
-        #with pytest.raises(ValueError):
-        #    self.fizzbuzz.compute("a")
 
-    
+    # Definimos el método de test que comprobará el control de errores en compute
+    def test_fizzbuzz_invalid_compute(self):
+        with pytest.raises(ValueError):
+            self.fizzbuzz.compute(0)
+        with pytest.raises(ValueError):
+            self.fizzbuzz.compute(-5)
+        with pytest.raises(ValueError):
+            self.fizzbuzz.compute("a")
