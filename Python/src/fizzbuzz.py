@@ -23,7 +23,7 @@ class FizzBuzz:
     # Método para calcular el valor FizzBuzz de un número
     def compute(self, number):
         # Validamos el número, solo lo hacemos si es válido
-        #if self.is_valid_number(number):
+        if self.is_valid_number(number):
             result = ""
             # Si el número contiene 3 o 5, añadimos Fizz o Buzz respectivamente
             if '3' in str(number):
