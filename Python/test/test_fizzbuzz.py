@@ -1,8 +1,8 @@
 # Importamos el módulo pytest para crear pruebas TDD
 import pytest
-from fizzbuzz import FizzBuzz
+from src.fizzbuzz import FizzBuzz
 
-# Definimos la clase de test que hereda de unittest.TestCase
+# Definimos la clase de test que contendrá los métodos de prueba
 class TestFizzBuzz:
     # Definimos el méodo setup que instanciará el objeto FizzBuzz
     def setup_method(self):
