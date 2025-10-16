@@ -46,7 +46,9 @@ class TestFizzBuzz:
         with pytest.raises(ValueError):
             self.fizzbuzz.compute("a")
 
-    # Definimos el método de test que probará la funcionalidad play
-    def test_fizzbuzz_play(self):
-        assert self.fizzbuzz.play() == [self.fizzbuzz.compute(i) for i in range(1, self.max + 1)]
-        assert self.fizzbuzz.play(50) == [self.fizzbuzz.compute(i) for i in range(1, 51)]
+    # Definimos el método de test que probará la funcionalidad play_to_array
+    def test_fizzbuzz_play_to_array(self):
+        assert self.fizzbuzz.play_to_array() == [self.fizzbuzz.compute(i) for i in range(1, self.max + 1)]
+        assert self.fizzbuzz.play_to_array(50) == [self.fizzbuzz.compute(i) for i in range(1, 51)]
+
+    # Definimos el método de test que probará la funcionalidad play_to_text
