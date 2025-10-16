@@ -1,5 +1,6 @@
 # Importamos el módulo pytest para crear pruebas TDD
 import pytest
+# Importamos la clase FizzBuzz desde el módulo fizzbuzz
 from src.fizzbuzz import FizzBuzz
 
 # Definimos la clase de test que contendrá los métodos de prueba
@@ -13,3 +14,12 @@ class TestFizzBuzz:
     def test_fizzbuzz_instantiation(self):
         assert isinstance(self.fizzbuzz, FizzBuzz)
         assert self.fizzbuzz.limit == self.max
+
+    # Definimos el método de test que comprobará el control de errores
+    def test_fizzbuzz_invalid_limit(self):
+        with pytest.raises(ValueError):
+            FizzBuzz(-1)
+        with pytest.raises(ValueError):
+            FizzBuzz(0)
+        with pytest.raises(ValueError):
+            FizzBuzz("a")   
