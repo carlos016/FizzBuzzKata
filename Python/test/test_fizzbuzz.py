@@ -23,3 +23,24 @@ class TestFizzBuzz:
             FizzBuzz(0)
         with pytest.raises(ValueError):
             FizzBuzz("a")   
+
+    # Definimos el método de test que probará la funcionalidad compute
+    def test_fizzbuzz_compute(self):
+        assert self.fizzbuzz.compute(1) == "1"
+        assert self.fizzbuzz.compute(2) == "2"
+        assert self.fizzbuzz.compute(3) == "FizzFizz"
+        assert self.fizzbuzz.compute(5) == "BuzzBuzz"
+        assert self.fizzbuzz.compute(9) == "Fizz"
+        assert self.fizzbuzz.compute(10) == "Buzz"
+        assert self.fizzbuzz.compute(15) == "BuzzFizzBuzz"
+        assert self.fizzbuzz.compute(30) == "FizzFizzBuzz"
+        assert self.fizzbuzz.compute(35) == "FizzBuzzBuzz"
+        assert self.fizzbuzz.compute(53) == "FizzBuzz"
+        #with pytest.raises(ValueError):
+        #    self.fizzbuzz.compute(0)
+        #with pytest.raises(ValueError):
+        #    self.fizzbuzz.compute(-5)
+        #with pytest.raises(ValueError):
+        #    self.fizzbuzz.compute("a")
+
+    

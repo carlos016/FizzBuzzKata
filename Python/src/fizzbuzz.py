@@ -11,12 +11,12 @@ class FizzBuzz:
     # Setter para limit con validación
     @limit.setter
     def limit(self, value):
-        if self.is_valid_limit(value):
+        if self.is_valid_number(value):
             self._limit = value
 
     # Método para validar el límite
-    def is_valid_limit(self, limit):
-        if not isinstance(limit, int) or limit <= 0:
-            raise ValueError("Limit must be a positive integer greater than zero.")
+    def is_valid_number(self, number):
+        if not isinstance(number, int) or number <= 0:
+            raise ValueError("Limit/Number to compute must be a positive integer greater than zero.")
         return True
     
