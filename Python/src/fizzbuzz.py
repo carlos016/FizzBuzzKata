@@ -104,20 +104,20 @@ class FizzBuzz:
         Raises:
             ValueError: If the input number is invalid.
         """
-        # Validamos el número, solo lo hacemos si es válido
+        # Validate the number, we only execute this if it's valid
         if self.is_valid_number(number):
             result = ""
-            # Si el número contiene 3 o 5, añadimos Fizz o Buzz respectivamente
+            # If the number contains 3 or 5, add Fizz or Buzz respectively
             if '3' in str(number):
                 result += "Fizz"
             if '5' in str(number):
                 result += "Buzz"
-            # Si el número es múltiplo de 3 o 5, añadimos Fizz o Buzz respectivamente
+            # If the number is a multiple of 3 or 5, add Fizz or Buzz respectively
             if number % 3 == 0:
                 result += "Fizz"
             if number % 5 == 0:
                 result += "Buzz"
-            # Si no se ha añadido nada, devolvemos el número como cadena
+            # If nothing has been added, return the number as a string
             return result if result else str(number)
         
     # ---------------------------------------------------------

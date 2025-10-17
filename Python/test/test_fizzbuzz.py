@@ -1,22 +1,33 @@
-# Importamos el módulo pytest para crear pruebas TDD
+"""
+test_fizzbuzz.py
+================
+
+TDD tests for the FizzBuzz class using pytest.
+These tests validate both the normal behavior and error handling
+for the main methods of the FizzBuzz class.
+"""
+
+# Import the pytest module to create TDD tests
 import pytest
-# Importamos la clase FizzBuzz desde el módulo fizzbuzz
+# Import the FizzBuzz class from the fizzbuzz module
 from src.fizzbuzz import FizzBuzz
 
-# Definimos la clase de test que contendrá los métodos de prueba
+
 class TestFizzBuzz:
-    # Definimos el méodo setup que instanciará el objeto FizzBuzz
+    """Test suite for the FizzBuzz class."""
+
     def setup_method(self):
+        """Create a FizzBuzz instance before each test."""
         self.max = 100
         self.fizzbuzz = FizzBuzz(self.max)
 
-    # Definimos el método de test que probará la instanciación de la clase FizzBuzz    
     def test_fizzbuzz_instantiation(self):
+        """Verify that a FizzBuzz object is correctly instantiated."""
         assert isinstance(self.fizzbuzz, FizzBuzz)
         assert self.fizzbuzz.limit == self.max
 
-    # Definimos el método de test que comprobará el control de errores
     def test_fizzbuzz_invalid_limit(self):
+        """Ensure ValueError is raised for invalid limits."""
         with pytest.raises(ValueError):
             FizzBuzz(-1)
         with pytest.raises(ValueError):
@@ -24,8 +35,8 @@ class TestFizzBuzz:
         with pytest.raises(ValueError):
             FizzBuzz("a")   
 
-    # Definimos el método de test que probará la funcionalidad compute
     def test_fizzbuzz_compute(self):
+        """Test the compute() method for expected FizzBuzz outputs."""
         assert self.fizzbuzz.compute(1) == "1"
         assert self.fizzbuzz.compute(2) == "2"
         assert self.fizzbuzz.compute(3) == "FizzFizz"
@@ -37,8 +48,8 @@ class TestFizzBuzz:
         assert self.fizzbuzz.compute(35) == "FizzBuzzBuzz"
         assert self.fizzbuzz.compute(53) == "FizzBuzz"
 
-    # Definimos el método de test que comprobará el control de errores en compute
     def test_fizzbuzz_invalid_compute(self):
+        """Ensure compute() raises ValueError for invalid inputs."""
         with pytest.raises(ValueError):
             self.fizzbuzz.compute(0)
         with pytest.raises(ValueError):
@@ -46,12 +57,12 @@ class TestFizzBuzz:
         with pytest.raises(ValueError):
             self.fizzbuzz.compute("a")
 
-    # Definimos el método de test que probará la funcionalidad play_to_array
     def test_fizzbuzz_play_to_array(self):
+        """Check that play_to_array() returns the correct sequence."""
         assert self.fizzbuzz.play_to_array() == [self.fizzbuzz.compute(i) for i in range(1, self.max + 1)]
         assert self.fizzbuzz.play_to_array(50) == [self.fizzbuzz.compute(i) for i in range(1, 51)]
 
-    # Definimos el método de test que probará la funcionalidad play_to_text
     def test_fizzbuzz_play_to_text(self):
+        """Check that play_to_text() returns the correct formatted string."""
         assert self.fizzbuzz.play_to_text() == "\n".join(self.fizzbuzz.play_to_array())
         assert self.fizzbuzz.play_to_text(50) == "\n".join(self.fizzbuzz.play_to_array(50))
