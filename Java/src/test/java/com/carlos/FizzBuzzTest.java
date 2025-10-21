@@ -40,6 +40,6 @@ public class FizzBuzzTest {
     @Test
     public void canInstantiateFizzBuzz() {
         assertNotNull(fizzBuzz, "FizzBuzz instance should not be null");
-        assertEquals(fizzBuzz.limit, MAX);
+        assertEquals(fizzBuzz.getLimit(), MAX);
     }
 }
