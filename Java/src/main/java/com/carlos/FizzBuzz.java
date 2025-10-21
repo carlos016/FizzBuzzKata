@@ -54,20 +54,14 @@ public class FizzBuzz {
         if (isValidNumber(max)) {
             this.limit = max;
         }
-        else {
-            this.limit = MAX;
-        }
     }
 
     // Validation
-    /**
-     * Returns {@code true} when the provided number is valid as a limit.
-     *
-     * @param number the number to validate
-     * @return {@code true} if the number is greater than zero
-     */
     private boolean isValidNumber(int number) {
-        return number > 0;
+        if (number <= 0) {
+            throw new IllegalArgumentException("The limit/Number must be a positive integer greater than zero.");
+        }
+        return true;
     }
     
 }
