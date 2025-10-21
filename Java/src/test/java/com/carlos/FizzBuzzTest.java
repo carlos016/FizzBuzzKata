@@ -2,6 +2,8 @@ package com.carlos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +43,15 @@ public class FizzBuzzTest {
     public void canInstantiateFizzBuzz() {
         assertNotNull(fizzBuzz, "FizzBuzz instance should not be null");
         assertEquals(fizzBuzz.getLimit(), MAX);
+    }
+
+    @Test
+    public void constructorThrowsOnInvalidLimit() {
+        // Expect IllegalArgumentException when constructing with an invalid limit (e.g. 0 or -1)
+        var ex1 = assertThrows(IllegalArgumentException.class, () -> new FizzBuzz(0));
+        var ex2 = assertThrows(IllegalArgumentException.class, () -> new FizzBuzz(-5));
+
+        assertTrue(ex1.getMessage().contains("limit"));
+        assertTrue(ex2.getMessage().contains("limit"));
     }
 }
