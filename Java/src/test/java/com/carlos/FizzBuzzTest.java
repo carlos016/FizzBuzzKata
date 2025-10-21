@@ -102,4 +102,19 @@ public class FizzBuzzTest {
         assertTrue(ex1.getMessage().contains("Number"));
         assertTrue(ex2.getMessage().contains("Number"));
     }
+
+    @Test
+    public void playFizzBuzzUpToLimitToArray() {
+        String[] expected = new String[MAX];
+        for (int i = 0; i < MAX; i++) {
+            expected[i] = fizzBuzz.compute(i + 1);
+        }
+
+        String[] actual = fizzBuzz.playToArray();
+
+        assertEquals(expected.length, actual.length, "Array lengths should match");
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], actual[i], "Mismatch at index " + i);
+        }
+    }
 }
