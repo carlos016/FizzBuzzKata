@@ -107,7 +107,7 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void playFizzBuzzUpToLimitToArray() {
+    public void playFizzBuzzUpToLimitToList() {
         List<String> expected = new ArrayList<>();
         for (int i = 0; i < MAX; i++) {
             expected.add(fizzBuzz.compute(i + 1));
@@ -119,5 +119,16 @@ public class FizzBuzzTest {
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i), "Mismatch at index " + i);
         }
+    }
+
+    @Test
+    public void playFizzBuzzUpToLimitToText() {
+        List<String> expectedList = fizzBuzz.playToList();
+        String expected = String.join("\n", expectedList);
+        
+        String actual = fizzBuzz.playToText();
+
+        assertEquals(expected.length(), actual.length(), "Text lengths should match");
+        assertEquals(expected, actual, "Mismatch in expected and actual text output");
     }
 }
