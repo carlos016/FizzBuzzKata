@@ -103,4 +103,13 @@ public class FizzBuzz {
         }
         return new ArrayList<>();
     }
+
+    public String playToText(){
+        return playToText(getLimit());
+    }
+
+    public String playToText(int max){
+        List<String> results = playToList(max);
+        return String.join("\n", results);
+    }
 }
