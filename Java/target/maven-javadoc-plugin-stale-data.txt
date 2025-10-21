@@ -1,0 +1,58 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/carlo/OneDrive/Escritorio/Prácticas Externas/FizzBuzzKata/Java/target/classes;C:/Users/carlo/OneDrive/Escritorio/Prácticas Externas/FizzBuzzKata/Java/target/test-classes;C:/Users/carlo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.0/junit-jupiter-api-5.11.0.jar;C:/Users/carlo/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar;C:/Users/carlo/.m2/repository/org/junit/platform/junit-platform-commons/1.11.0/junit-platform-commons-1.11.0.jar;C:/Users/carlo/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar;C:/Users/carlo/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.11.0/junit-jupiter-params-5.11.0.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'C:/Users/carlo/OneDrive/Escritorio/Prácticas Externas/FizzBuzzKata/Java/src/test/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/carlo/OneDrive/Escritorio/Prácticas Externas/FizzBuzzKata/Java/target/reports/testapidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Java 1.0-SNAPSHOT Test API'
+-link
+'../apidocs'
+-use
+-version
+-windowtitle
+'Java 1.0-SNAPSHOT Test API'
+com.carlos
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\classes = 1761039746472
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\test-classes = 1761039746479
+C:\Users\carlo\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.0\junit-jupiter-api-5.11.0.jar = 1760955555819
+C:\Users\carlo\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar = 1760955556126
+C:\Users\carlo\.m2\repository\org\junit\platform\junit-platform-commons\1.11.0\junit-platform-commons-1.11.0.jar = 1760955555940
+C:\Users\carlo\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar = 1760955555911
+C:\Users\carlo\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.11.0\junit-jupiter-params-5.11.0.jar = 1760955556078
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\src\test\java = 1760955469090
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\allclasses-index.html = 1761055677300
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\allpackages-index.html = 1761055677304
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\copy.svg = 1761055677328
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\element-list = 1761055677258
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\help-doc.html = 1761055677328
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\index-all.html = 1761055677318
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\index.html = 1761055677318
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\link.svg = 1761055677328
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\member-search-index.js = 1761055677308
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\module-search-index.js = 1761055677304
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\overview-tree.html = 1761055677288
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\package-search-index.js = 1761055677304
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\script.js = 1761055677328
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\search-page.js = 1761055677338
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\search.html = 1761055677318
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\search.js = 1761055677338
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\stylesheet.css = 1761055677328
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\tag-search-index.js = 1761055677310
+C:\Users\carlo\OneDrive\Escritorio\Prácticas Externas\FizzBuzzKata\Java\target\reports\testapidocs\type-search-index.js = 1761055677308

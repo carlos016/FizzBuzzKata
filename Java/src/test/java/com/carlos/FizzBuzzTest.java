@@ -27,6 +27,16 @@ public class FizzBuzzTest {
     private static final int MAX = 100;
 
     /**
+     * Default constructor for the test class.
+     *
+     * <p>This constructor is explicit so the Javadoc tool does not emit a
+     * warning about the implicit default constructor.</p>
+     */
+    public FizzBuzzTest() {
+        super();
+    }
+
+    /**
      * Initializes shared state once before all tests in this class.
      * <p>Using {@code @BeforeAll} reduces setup overhead by creating a single
      * instance reused across tests. The setup method must be static.</p>
@@ -48,12 +58,11 @@ public class FizzBuzzTest {
         assertEquals(MAX, fizzBuzz.getLimit());
     }
 
+    /**
+     * Verifies the constructor throws an exception for invalid limits.
+     */
     @Test
     public void constructorThrowsOnInvalidLimit() {
-        /**
-         * Ensures the constructor validates its input and throws
-         * {@link IllegalArgumentException} for non-positive integer limits and zero.
-         */
         var ex1 = assertThrows(IllegalArgumentException.class, () -> new FizzBuzz(0));
         var ex2 = assertThrows(IllegalArgumentException.class, () -> new FizzBuzz(-5));
 
@@ -61,12 +70,11 @@ public class FizzBuzzTest {
         assertTrue(ex2.getMessage().contains("limit"));
     }
 
+    /**
+     * Verifies the compute() method returns the number as a string for inputs that are not positive or zero.
+     */
     @Test
     public void computeNormalNumbers() {
-        /**
-         * Verifies compute() returns the number as a string for inputs that not contains 
-         * 3 or 5 and are not multiples of 3 or 5.
-         */
         assertEquals("1", fizzBuzz.compute(1));
         assertEquals("2", fizzBuzz.compute(2));
         assertEquals("4", fizzBuzz.compute(4));
@@ -74,36 +82,36 @@ public class FizzBuzzTest {
         assertEquals("98", fizzBuzz.compute(98));
     }
 
+    /**
+     * Verifies compute() returns "Fizz" for numbers that contain
+     * 3 or are divisible by 3 but are not divisible by 5 or contain 5 (according to the kata rules implemented).
+     */
     @Test
     public void computeFizzNumbers() {
-        /**
-         * Verifies compute() returns "Fizz" for numbers that contain
-         * 3 or are divisible by 3 but are not divisible by 5 or contain 5 (according to the kata rules implemented).
-         */
         assertEquals("Fizz", fizzBuzz.compute(6));
         assertEquals("Fizz", fizzBuzz.compute(9));
         assertEquals("Fizz", fizzBuzz.compute(27));
         assertEquals("Fizz", fizzBuzz.compute(42));
     }
 
+    /**
+     * Verifies compute() returns "Buzz" for numbers that contain
+     * 5 or are divisible by 5 but are not divisible by 3 or contain 3 (according to the kata rules implemented).
+     */
     @Test
     public void computeBuzzNumbers() {
-        /**
-         * Verifies compute() returns "Buzz" for numbers that contain
-         * 5 or are divisible by 5 but are not divisible by 3 or contain 3 (according to the kata rules implemented).
-         */
         assertEquals("Buzz", fizzBuzz.compute(10));
         assertEquals("Buzz", fizzBuzz.compute(20));
         assertEquals("Buzz", fizzBuzz.compute(40));
         assertEquals("Buzz", fizzBuzz.compute(100));
     }
 
+    /**
+     * Verifies compute() behavior for composite cases where both "Fizz"
+     * and "Buzz" might appear according to the kata's specific rules.
+     */
     @Test
     public void computeAnyFizzBuzzNumbers() {
-        /**
-         * Verifies compute() behavior for composite cases where both "Fizz"
-         * and "Buzz" might appear according to the kata's specific rules.
-         */
         assertEquals("FizzFizz", fizzBuzz.compute(3));
         assertEquals("BuzzBuzz", fizzBuzz.compute(5));
         assertEquals("BuzzFizzBuzz", fizzBuzz.compute(15));
@@ -115,12 +123,11 @@ public class FizzBuzzTest {
         assertEquals("FizzBuzz", fizzBuzz.compute(90));
     }
 
+    /**
+     * Verifies compute() returns IllegalArgumentException for invalid inputs.
+     */
     @Test
     public void computeThrowsOnInvalidNumber() {
-        /**
-         * Ensures compute() validates its input and throws
-         * {@link IllegalArgumentException} for non-positive integer limits and zero.
-         */
         var ex1 = assertThrows(IllegalArgumentException.class, () -> fizzBuzz.compute(0));
         var ex2 = assertThrows(IllegalArgumentException.class, () -> fizzBuzz.compute(-10));
 
@@ -128,13 +135,13 @@ public class FizzBuzzTest {
         assertTrue(ex2.getMessage().contains("Number"));
     }
 
+    /**
+    * Verifies playToList() returns the full FizzBuzz sequence up to the
+    * configured limit and that its elements match the expected sequence
+    * computed by calling {@link FizzBuzz#compute(int)} repeatedly.
+    */
     @Test
     public void playFizzBuzzUpToLimitToList() {
-        /**
-         * Verifies playToList() returns the full FizzBuzz sequence up to the
-         * configured limit and that its elements match the expected sequence
-         * computed by calling {@link #compute(int)} repeatedly.
-         */
         List<String> expected = new ArrayList<>();
         for (int i = 0; i < MAX; i++) {
             expected.add(fizzBuzz.compute(i + 1));
@@ -148,13 +155,13 @@ public class FizzBuzzTest {
         }
     }
 
+    /**
+    * Verifies playToText() returns a newline-separated representation of the
+    * full FizzBuzz sequence equivalent to joining the list returned by
+    * {@link #playFizzBuzzUpToLimitToList()}.
+    */
     @Test
     public void playFizzBuzzUpToLimitToText() {
-        /**
-         * Verifies playToText() returns a newline-separated representation of the
-         * full FizzBuzz sequence equivalent to joining the list returned by
-         * {@link #playFizzBuzzUpToLimitToList()}.
-         */
         List<String> expectedList = fizzBuzz.playToList();
         String expected = String.join("\n", expectedList);
 
