@@ -82,13 +82,24 @@ public class FizzBuzzTest {
 
     @Test
     public void computeAnyFizzBuzzNumbers() {
+        assertEquals("FizzFizz", fizzBuzz.compute(3));
+        assertEquals("BuzzBuzz", fizzBuzz.compute(5));
         assertEquals("BuzzFizzBuzz", fizzBuzz.compute(15));
         assertEquals("FizzFizzBuzz", fizzBuzz.compute(30));
         assertEquals("FizzBuzzBuzz", fizzBuzz.compute(35));
         assertEquals("BuzzFizzBuzz", fizzBuzz.compute(45));
         assertEquals("FizzBuzz", fizzBuzz.compute(53));
-        assertEquals("FizzBuzz", fizzBuzz.compute(60));
         assertEquals("BuzzFizzBuzz", fizzBuzz.compute(75));
         assertEquals("FizzBuzz", fizzBuzz.compute(90));
+    }
+
+    @Test
+    public void computeThrowsOnInvalidNumber() {
+        // Expect IllegalArgumentException when computing with an invalid number (e.g. 0 or -1)
+        var ex1 = assertThrows(IllegalArgumentException.class, () -> fizzBuzz.compute(0));
+        var ex2 = assertThrows(IllegalArgumentException.class, () -> fizzBuzz.compute(-10));
+
+        assertTrue(ex1.getMessage().contains("Number"));
+        assertTrue(ex2.getMessage().contains("Number"));
     }
 }
