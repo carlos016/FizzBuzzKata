@@ -42,7 +42,7 @@ public class FizzBuzzTest {
     @Test
     public void canInstantiateFizzBuzz() {
         assertNotNull(fizzBuzz, "FizzBuzz instance should not be null");
-        assertEquals(fizzBuzz.getLimit(), MAX);
+        assertEquals(MAX, fizzBuzz.getLimit());
     }
 
     @Test
@@ -69,14 +69,14 @@ public class FizzBuzzTest {
         assertEquals("Fizz", fizzBuzz.compute(6));
         assertEquals("Fizz", fizzBuzz.compute(9));
         assertEquals("Fizz", fizzBuzz.compute(27));
-        assertEquals("Fizz", fizzBuzz.compute(156));
+        assertEquals("Fizz", fizzBuzz.compute(42));
     }
 
     @Test
     public void computeBuzzNumbers() {
         assertEquals("Buzz", fizzBuzz.compute(10));
         assertEquals("Buzz", fizzBuzz.compute(20));
-        assertEquals("Buzz", fizzBuzz.compute(30));
+        assertEquals("Buzz", fizzBuzz.compute(40));
         assertEquals("Buzz", fizzBuzz.compute(100));
     }
 
@@ -84,9 +84,11 @@ public class FizzBuzzTest {
     public void computeAnyFizzBuzzNumbers() {
         assertEquals("BuzzFizzBuzz", fizzBuzz.compute(15));
         assertEquals("FizzFizzBuzz", fizzBuzz.compute(30));
+        assertEquals("FizzBuzzBuzz", fizzBuzz.compute(35));
         assertEquals("BuzzFizzBuzz", fizzBuzz.compute(45));
+        assertEquals("FizzBuzz", fizzBuzz.compute(53));
         assertEquals("FizzBuzz", fizzBuzz.compute(60));
-        assertEquals("FizzBuzz", fizzBuzz.compute(75));
+        assertEquals("BuzzFizzBuzz", fizzBuzz.compute(75));
         assertEquals("FizzBuzz", fizzBuzz.compute(90));
     }
 }
