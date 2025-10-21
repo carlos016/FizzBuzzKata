@@ -1,5 +1,8 @@
 package com.carlos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Simple implementation of the classic FizzBuzz kata.
  *
@@ -84,5 +87,20 @@ public class FizzBuzz {
             result = String.valueOf(number);
         }
         return result;
+    }
+
+    public List<String> playToList(){
+        return playToList(getLimit());
+    }
+
+    public List<String> playToList(int max){
+        if (isValidNumber(max)){
+            List<String> results = new ArrayList<>(max);
+            for (int i = 0; i < max; i++){
+                results.add(compute(i + 1));
+            }
+            return results;
+        }
+        return new ArrayList<>();
     }
 }

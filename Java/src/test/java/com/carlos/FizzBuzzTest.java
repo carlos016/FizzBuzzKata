@@ -1,5 +1,8 @@
 package com.carlos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -105,16 +108,16 @@ public class FizzBuzzTest {
 
     @Test
     public void playFizzBuzzUpToLimitToArray() {
-        String[] expected = new String[MAX];
+        List<String> expected = new ArrayList<>();
         for (int i = 0; i < MAX; i++) {
-            expected[i] = fizzBuzz.compute(i + 1);
+            expected.add(fizzBuzz.compute(i + 1));
         }
 
-        String[] actual = fizzBuzz.playToArray();
+        List<String> actual = new ArrayList<>(fizzBuzz.playToList());
 
-        assertEquals(expected.length, actual.length, "Array lengths should match");
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], actual[i], "Mismatch at index " + i);
+        assertEquals(expected.size(), actual.size(), "Array lengths should match");
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i), actual.get(i), "Mismatch at index " + i);
         }
     }
 }
