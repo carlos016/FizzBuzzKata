@@ -54,4 +54,39 @@ public class FizzBuzzTest {
         assertTrue(ex1.getMessage().contains("limit"));
         assertTrue(ex2.getMessage().contains("limit"));
     }
+
+    @Test
+    public void computeNormalNumbers() {
+        assertEquals("1", fizzBuzz.compute(1));
+        assertEquals("2", fizzBuzz.compute(2));
+        assertEquals("4", fizzBuzz.compute(4));
+        assertEquals("7", fizzBuzz.compute(7));
+        assertEquals("98", fizzBuzz.compute(98));
+    }
+
+    @Test
+    public void computeFizzNumbers() {
+        assertEquals("Fizz", fizzBuzz.compute(6));
+        assertEquals("Fizz", fizzBuzz.compute(9));
+        assertEquals("Fizz", fizzBuzz.compute(27));
+        assertEquals("Fizz", fizzBuzz.compute(156));
+    }
+
+    @Test
+    public void computeBuzzNumbers() {
+        assertEquals("Buzz", fizzBuzz.compute(10));
+        assertEquals("Buzz", fizzBuzz.compute(20));
+        assertEquals("Buzz", fizzBuzz.compute(30));
+        assertEquals("Buzz", fizzBuzz.compute(100));
+    }
+
+    @Test
+    public void computeAnyFizzBuzzNumbers() {
+        assertEquals("BuzzFizzBuzz", fizzBuzz.compute(15));
+        assertEquals("FizzFizzBuzz", fizzBuzz.compute(30));
+        assertEquals("BuzzFizzBuzz", fizzBuzz.compute(45));
+        assertEquals("FizzBuzz", fizzBuzz.compute(60));
+        assertEquals("FizzBuzz", fizzBuzz.compute(75));
+        assertEquals("FizzBuzz", fizzBuzz.compute(90));
+    }
 }
