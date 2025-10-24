@@ -7,62 +7,54 @@ These tests validate both the normal behavior and error handling
 for the main methods of the FizzBuzz class.
 """
 
-# Import the pytest module to create TDD tests
 import pytest
-# Import the FizzBuzz class from the fizzbuzz module
+
 from src.fizzbuzz import FizzBuzz
 
 
-class TestFizzBuzz:
-    """Test suite for the FizzBuzz class."""
+@pytest.fixture
+def fizzbuzz():
+    return FizzBuzz(100)
 
-    def setup_method(self):
-        """Create a FizzBuzz instance before each test."""
-        self.max = 100
-        self.fizzbuzz = FizzBuzz(self.max)
 
-    def test_fizzbuzz_instantiation(self):
-        """Verify that a FizzBuzz object is correctly instantiated."""
-        assert isinstance(self.fizzbuzz, FizzBuzz)
-        assert self.fizzbuzz.limit == self.max
+def test_fizzbuzz_instantiation(fizzbuzz):
+    assert isinstance(fizzbuzz, FizzBuzz)
+    assert fizzbuzz.limit == 100
 
-    def test_fizzbuzz_invalid_limit(self):
-        """Ensure ValueError is raised for invalid limits."""
-        with pytest.raises(ValueError):
-            FizzBuzz(-1)
-        with pytest.raises(ValueError):
-            FizzBuzz(0)
-        with pytest.raises(ValueError):
-            FizzBuzz("a")   
 
-    def test_fizzbuzz_compute(self):
-        """Test the compute() method for expected FizzBuzz outputs."""
-        assert self.fizzbuzz.compute(1) == "1"
-        assert self.fizzbuzz.compute(2) == "2"
-        assert self.fizzbuzz.compute(3) == "FizzFizz"
-        assert self.fizzbuzz.compute(5) == "BuzzBuzz"
-        assert self.fizzbuzz.compute(9) == "Fizz"
-        assert self.fizzbuzz.compute(10) == "Buzz"
-        assert self.fizzbuzz.compute(15) == "BuzzFizzBuzz"
-        assert self.fizzbuzz.compute(30) == "FizzFizzBuzz"
-        assert self.fizzbuzz.compute(35) == "FizzBuzzBuzz"
-        assert self.fizzbuzz.compute(53) == "FizzBuzz"
+@pytest.mark.parametrize("bad", [-1, 0, "a"])
+def test_fizzbuzz_invalid_limit(bad):
+    with pytest.raises(ValueError):
+        FizzBuzz(bad)
 
-    def test_fizzbuzz_invalid_compute(self):
-        """Ensure compute() raises ValueError for invalid inputs."""
-        with pytest.raises(ValueError):
-            self.fizzbuzz.compute(0)
-        with pytest.raises(ValueError):
-            self.fizzbuzz.compute(-5)
-        with pytest.raises(ValueError):
-            self.fizzbuzz.compute("a")
 
-    def test_fizzbuzz_play_to_array(self):
-        """Check that play_to_array() returns the correct sequence."""
-        assert self.fizzbuzz.play_to_array() == [self.fizzbuzz.compute(i) for i in range(1, self.max + 1)]
-        assert self.fizzbuzz.play_to_array(50) == [self.fizzbuzz.compute(i) for i in range(1, 51)]
+@pytest.mark.parametrize(
+    "n,expected",
+    [
+        (1, "1"),
+        (2, "2"),
+        (3, "FizzFizz"),
+        (5, "BuzzBuzz"),
+        (9, "Fizz"),
+        (10, "Buzz"),
+        (15, "BuzzFizzBuzz"),
+        (30, "FizzFizzBuzz"),
+        (35, "FizzBuzzBuzz"),
+        (53, "FizzBuzz"),
+    ],
+)
+def test_fizzbuzz_compute(n, expected, fizzbuzz):
+    assert fizzbuzz.compute(n) == expected
 
-    def test_fizzbuzz_play_to_text(self):
-        """Check that play_to_text() returns the correct formatted string."""
-        assert self.fizzbuzz.play_to_text() == "\n".join(self.fizzbuzz.play_to_array())
-        assert self.fizzbuzz.play_to_text(50) == "\n".join(self.fizzbuzz.play_to_array(50))
+
+@pytest.mark.parametrize("bad", [0, -5, "a"])
+def test_fizzbuzz_invalid_compute(bad, fizzbuzz):
+    with pytest.raises(ValueError):
+        fizzbuzz.compute(bad)
+
+
+def test_fizzbuzz_play_to_array_and_text(fizzbuzz):
+    assert fizzbuzz.play_to_array() == [fizzbuzz.compute(i) for i in range(1, fizzbuzz.limit + 1)]
+    assert fizzbuzz.play_to_array(50) == [fizzbuzz.compute(i) for i in range(1, 51)]
+    assert fizzbuzz.play_to_text() == "\n".join(fizzbuzz.play_to_array())
+    assert fizzbuzz.play_to_text(50) == "\n".join(fizzbuzz.play_to_array(50))

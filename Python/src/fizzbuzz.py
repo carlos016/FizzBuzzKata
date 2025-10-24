@@ -1,149 +1,85 @@
+"""Refactored FizzBuzz implementation.
+
+Public API preserved for compatibility with existing tests and scripts:
+- class FizzBuzz(limit: int = 100)
+- property: limit
+- method: is_valid_number(number: int) -> bool
+- method: compute(number: int) -> str
+- method: play_to_array(max: int | None = None) -> list[str]
+- method: play_to_text(max: int | None = None) -> str
 """
-fizzbuzz.py
-===========
 
-This module defines the `FizzBuzz` class, which implements an extended version
-of the traditional FizzBuzz game.
-
-The class allows you to:
-- Validate user inputs.
-- Compute FizzBuzz values for individual numbers.
-- Generate full FizzBuzz sequences as lists or formatted text.
-
-Example:
-    >>> fb = FizzBuzz(15)
-    >>> fb.compute(3)
-    'FizzFizz'
-    >>> fb.play_to_text()
-    '1\n2\nFizzFizz\n4\nBuzzBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\nFizz\n14\nBuzzFizzBuzz'
-"""
+from __future__ import annotations
+from typing import List
 
 
 class FizzBuzz:
-    """Represents the FizzBuzz game logic.
-
-    Attributes:
-        limit (int): The upper bound for generating FizzBuzz numbers.
-    """
+    """FizzBuzz game logic with centralized validation and clearer helpers."""
 
     def __init__(self, limit: int = 100):
-        """Initialize a new FizzBuzz instance.
-
-        Args:
-            limit (int, optional): The maximum number to play up to.
-                Defaults to 100.
-
-        Raises:
-            ValueError: If the provided limit is not a positive integer.
-        """
+        # use the setter to validate
         self.limit = limit
 
-    # Getters and Setters
-    # Getter for limit
-    # ---------------------------------------------------------
-    # Property: limit
-    # ---------------------------------------------------------
     @property
     def limit(self) -> int:
-        """int: Get the current FizzBuzz limit value."""
+        """Configured upper bound for output methods."""
         return self._limit
 
-    # Setter for limit with validation
     @limit.setter
-    def limit(self, value: int):
-        """Set the FizzBuzz limit after validating it.
+    def limit(self, value: int) -> None:
+        self._validate_positive_integer(value, name="limit")
+        self._limit = value
 
-        Args:
-            value (int): The new limit value.
+    # Validation helpers
+    def _validate_positive_integer(self, value, name: str = "number") -> None:
+        """Raise ValueError unless ``value`` is an int > 0.
 
-        Raises:
-            ValueError: If the limit is not a positive integer greater than zero.
+        This method is strict about types because existing tests expect
+        ValueError for non-int inputs.
         """
-        if self.is_valid_number(value):
-            self._limit = value
+        if not isinstance(value, int) or value <= 0:
+            raise ValueError(f"{name} must be a positive integer greater than zero.")
 
-    # ---------------------------------------------------------
-    # Validation Method
-    # ---------------------------------------------------------
     def is_valid_number(self, number: int) -> bool:
-        """Validate that a number is a positive integer greater than zero.
+        """Backward-compatible wrapper used by legacy callers/tests.
 
-        Args:
-            number (int): The number to validate.
-
-        Returns:
-            bool: True if the number is valid.
-
-        Raises:
-            ValueError: If the number is not a positive integer greater than zero.
+        Returns True when validation passes, otherwise raises ValueError.
         """
-        if not isinstance(number, int) or number <= 0:
-            raise ValueError("Limit/Number to compute must be a positive integer greater than zero.")
+        self._validate_positive_integer(number)
         return True
-    
-    # ---------------------------------------------------------
-    # Core FizzBuzz Logic
-    # ---------------------------------------------------------
+
+    # Core logic
     def compute(self, number: int) -> str:
-        """Compute the FizzBuzz result for a single number.
+        """Compute the FizzBuzz token for a single integer.
 
-        The rules are:
-        - Add "Fizz" if contains the digit 3.
-        - Add "Buzz" if contains the digit 5.
-        - Add "Fizz" if divisible by 3.
-        - Add "Buzz" if divisible by 5.
-        - Concatenate all of them if conditions apply.
-        - Return the number itself as a string otherwise.
-
-        Args:
-            number (int): The number to compute.
-
-        Returns:
-            str: The resulting FizzBuzz string.
-
-        Raises:
-            ValueError: If the input number is invalid.
+        Rules (preserved): presence-based tokens first (contains digits), then
+        divisibility tokens. If no rule applies, return the number as a string.
         """
-        # Validate the number, we only execute this if it's valid
-        if self.is_valid_number(number):
-            result = ""
-            # If the number contains 3 or 5, add Fizz or Buzz respectively
-            if '3' in str(number):
-                result += "Fizz"
-            if '5' in str(number):
-                result += "Buzz"
-            # If the number is a multiple of 3 or 5, add Fizz or Buzz respectively
-            if number % 3 == 0:
-                result += "Fizz"
-            if number % 5 == 0:
-                result += "Buzz"
-            # If nothing has been added, return the number as a string
-            return result if result else str(number)
-        
-    # ---------------------------------------------------------
-    # Output Methods
-    # ---------------------------------------------------------
-    def play_to_array(self, max: int = None) -> list[str]:
-        """Generate a list of FizzBuzz results up to a given number.
+        self._validate_positive_integer(number, name="Number")
 
-        Args:
-            max (int, optional): Custom upper limit. Defaults to self.limit.
+        s = str(number)
+        tokens: List[str] = []
 
-        Returns:
-            list[str]: List of computed FizzBuzz values.
-        """
+        # presence-based tokens
+        if '3' in s:
+            tokens.append("Fizz")
+        if '5' in s:
+            tokens.append("Buzz")
+
+        # divisibility-based tokens
+        if number % 3 == 0:
+            tokens.append("Fizz")
+        if number % 5 == 0:
+            tokens.append("Buzz")
+
+        return "".join(tokens) if tokens else s
+
+    # Output helpers
+    def play_to_array(self, max: int | None = None) -> List[str]:
         if max is None:
             max = self.limit
+        self._validate_positive_integer(max, name="max")
         return [self.compute(i) for i in range(1, max + 1)]
 
-
-    def play_to_text(self, max: int = None) -> str:
-        """Generate the FizzBuzz sequence as a formatted text string.
-
-        Args:
-            max (int, optional): Custom upper limit. Defaults to self.limit.
-
-        Returns:
-            str: The full FizzBuzz sequence separated by new lines.
-        """
+    def play_to_text(self, max: int | None = None) -> str:
         return "\n".join(self.play_to_array(max))

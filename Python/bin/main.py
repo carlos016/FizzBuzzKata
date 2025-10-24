@@ -11,27 +11,45 @@ Example:
     ...\FizzBuzzKata\Python$ python -m bin.main
 """
 
-# Import the FizzBuzz class from the src.fizzbuzz module
+import argparse
+import sys
+
 from src.fizzbuzz import FizzBuzz
 
 
-def main():
-    """Run the FizzBuzz game interactively from the command line.
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Run the FizzBuzz sequence to a given limit.")
+    parser.add_argument(
+        "limit",
+        nargs="?",
+        type=int,
+        help="Optional positive integer limit (default: 100)",
+    )
+    return parser
 
-    Prompts the user to enter a number (default: current limit) and prints
-    the full FizzBuzz sequence up to that number.
+
+def main(argv: list[str] | None = None) -> int:
+    """Entry point for the FizzBuzz CLI.
+
+    Returns 0 on success, non-zero on error. `argv` is provided for testability.
     """
-    fizzbuzz = FizzBuzz()
-    numeroDeseado = 100
-    # Get the user's number
+    argv = argv if argv is not None else sys.argv[1:]
+    parser = _build_parser()
+    args = parser.parse_args(argv)
+
     try:
-        numeroDeseado = int(input(f"Enter a positive integer greater than zero (default {fizzbuzz.limit}): ") or fizzbuzz.limit)
-        fizzbuzz.limit = numeroDeseado
-    except ValueError as e:
-        print(f"Error: {e}. Using default value {fizzbuzz.limit}.")
+        fb = FizzBuzz()
+        if args.limit is not None:
+            fb.limit = args.limit
+        print(fb.play_to_text())
+        return 0
+    except ValueError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 2
+    except KeyboardInterrupt:
+        print("Interrupted.", file=sys.stderr)
+        return 130
 
-    print(fizzbuzz.play_to_text())
 
-# Run the main function if the script is executed directly
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
